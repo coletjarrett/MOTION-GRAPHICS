@@ -1,0 +1,34 @@
+This is a new way to make broadcast graphics:
+lower thirds, titles, timelines, maps, and short animated films.
+Nothing here was keyframed by hand.
+Every graphic is a small program.
+[pause 0.4]
+The program answers one simple question:
+what does the picture look like at this moment in time?
+Because each frame depends only on time,
+any frame can be drawn on any computer, in any order.
+So an ordinary laptop can render many frames at once,
+and the result is identical, every time.
+
+Here is the workflow.
+It begins with a brief: the words, the style, and the length.
+An AI assistant writes the template, renders test frames, and checks its own work.
+A second AI model reviews the result, and reports defects with timestamps.
+And a person stays in charge of every decision:
+the look, the wording, and the final cut.
+
+Rendering happens in a standard web browser, running invisibly, one frame at a time.
+The frames are encoded for editors:
+ProRes with transparency for overlays, and H.264 for review.
+Narration can be generated on the same computer,
+with a speech model that runs completely offline.
+
+Because the text is data, one template becomes hundreds of clips.
+Change a name, a date, or a language, and render again in seconds.
+Right-to-left scripts, like Arabic, mirror automatically.
+
+And because the templates are code, they can be versioned, reviewed, and shared between teams.
+The same method scales from a simple name title
+to a fully narrated, animated film.
+Modest in cost. Consistent in quality.
+And ready to serve in many languages.

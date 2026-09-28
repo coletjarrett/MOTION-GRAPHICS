@@ -1,0 +1,147 @@
+[
+ {
+  "a": 1.2,
+  "b": 3.905,
+  "text": "This is a new way to make broadcast graphics:"
+ },
+ {
+  "a": 3.925,
+  "b": 8.408,
+  "text": "lower thirds, titles, timelines, maps, and short animated films."
+ },
+ {
+  "a": 8.428,
+  "b": 10.832,
+  "text": "Nothing here was keyframed by hand."
+ },
+ {
+  "a": 10.852,
+  "b": 13.02,
+  "text": "Every graphic is a small program."
+ },
+ {
+  "a": 13.04,
+  "b": 15.606,
+  "text": "The program answers one simple question:"
+ },
+ {
+  "a": 15.626,
+  "b": 18.373,
+  "text": "what does the picture look like at this moment in time?"
+ },
+ {
+  "a": 18.393,
+  "b": 20.81,
+  "text": "Because each frame depends only on time,"
+ },
+ {
+  "a": 20.83,
+  "b": 24.058,
+  "text": "any frame can be drawn on any computer, in any order."
+ },
+ {
+  "a": 24.078,
+  "b": 27.687,
+  "text": "So an ordinary laptop can render many frames at once,"
+ },
+ {
+  "a": 27.707,
+  "b": 30.48,
+  "text": "and the result is identical, every time."
+ },
+ {
+  "a": 31.23,
+  "b": 32.732,
+  "text": "Here is the workflow."
+ },
+ {
+  "a": 32.752,
+  "b": 36.25,
+  "text": "It begins with a brief: the words, the style, and the length."
+ },
+ {
+  "a": 36.27,
+  "b": 41.578,
+  "text": "An AI assistant writes the template, renders test frames, and checks its own work."
+ },
+ {
+  "a": 41.598,
+  "b": 46.575,
+  "text": "A second AI model reviews the result, and reports defects with timestamps."
+ },
+ {
+  "a": 46.595,
+  "b": 49.429,
+  "text": "And a person stays in charge of every decision:"
+ },
+ {
+  "a": 49.449,
+  "b": 51.913,
+  "text": "the look, the wording, and the final cut."
+ },
+ {
+  "a": 52.663,
+  "b": 58.198,
+  "text": "Rendering happens in a standard web browser, running invisibly, one frame at a time."
+ },
+ {
+  "a": 58.218,
+  "b": 60.568,
+  "text": "The frames are encoded for editors:"
+ },
+ {
+  "a": 60.588,
+  "b": 65.644,
+  "text": "ProRes with transparency for overlays, and H.264 for review."
+ },
+ {
+  "a": 65.664,
+  "b": 68.811,
+  "text": "Narration can be generated on the same computer,"
+ },
+ {
+  "a": 68.831,
+  "b": 71.976,
+  "text": "with a speech model that runs completely offline."
+ },
+ {
+  "a": 72.726,
+  "b": 76.821,
+  "text": "Because the text is data, one template becomes hundreds of clips."
+ },
+ {
+  "a": 76.841,
+  "b": 81.125,
+  "text": "Change a name, a date, or a language, and render again in seconds."
+ },
+ {
+  "a": 81.145,
+  "b": 84.588,
+  "text": "Right-to-left scripts, like Arabic, mirror automatically."
+ },
+ {
+  "a": 85.338,
+  "b": 90.554,
+  "text": "And because the templates are code, they can be versioned, reviewed, and shared between teams."
+ },
+ {
+  "a": 90.574,
+  "b": 93.663,
+  "text": "The same method scales from a simple name title"
+ },
+ {
+  "a": 93.683,
+  "b": 96.171,
+  "text": "to a fully narrated, animated film."
+ },
+ {
+  "a": 96.191,
+  "b": 99.145,
+  "text": "Modest in cost. Consistent in quality."
+ },
+ {
+  "a": 99.165,
+  "b": 101.545,
+  "text": "And ready to serve in many languages."
+ }
+]

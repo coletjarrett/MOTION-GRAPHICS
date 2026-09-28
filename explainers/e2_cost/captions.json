@@ -1,0 +1,107 @@
+[
+ {
+  "a": 1.2,
+  "b": 3.75,
+  "text": "What does production like this actually cost?"
+ },
+ {
+  "a": 3.77,
+  "b": 6.068,
+  "text": "Take the film on Daniel chapter two:"
+ },
+ {
+  "a": 6.088,
+  "b": 10.574,
+  "text": "three minutes, fully animated, narrated, and scored with sound design."
+ },
+ {
+  "a": 10.594,
+  "b": 14.266,
+  "text": "The person directing it sent fewer than ten short messages."
+ },
+ {
+  "a": 14.286,
+  "b": 18.768,
+  "text": "The AI assistant planned the scenes, wrote every line of animation code,"
+ },
+ {
+  "a": 18.788,
+  "b": 21.906,
+  "text": "built the sound, and checked the frames for defects."
+ },
+ {
+  "a": 21.926,
+  "b": 26.695,
+  "text": "The final render ran on a laptop, in the background, in about twenty minutes."
+ },
+ {
+  "a": 26.715,
+  "b": 30.803,
+  "text": "No render farm. No stock footage. No licensed plugins."
+ },
+ {
+  "a": 31.553,
+  "b": 33.717,
+  "text": "This graphics library went further."
+ },
+ {
+  "a": 33.737,
+  "b": 36.993,
+  "text": "Dozens of clips, in more than a dozen visual styles,"
+ },
+ {
+  "a": 37.013,
+  "b": 39.978,
+  "text": "were designed, rendered, and reviewed overnight."
+ },
+ {
+  "a": 39.998,
+  "b": 43.367,
+  "text": "Several AI workers built style packs in parallel,"
+ },
+ {
+  "a": 43.387,
+  "b": 45.749,
+  "text": "while a second model critiqued the results."
+ },
+ {
+  "a": 45.769,
+  "b": 48.662,
+  "text": "Each lower third renders in well under a minute."
+ },
+ {
+  "a": 49.412,
+  "b": 53.919,
+  "text": "Traditionally, a package like this could take a motion designer several weeks."
+ },
+ {
+  "a": 53.939,
+  "b": 57.099,
+  "text": "Here, the human role shifts from building to directing:"
+ },
+ {
+  "a": 57.119,
+  "b": 59.425,
+  "text": "choosing, approving, and refining."
+ },
+ {
+  "a": 59.445,
+  "b": 62.297,
+  "text": "The running costs are a few AI subscriptions,"
+ },
+ {
+  "a": 62.317,
+  "b": 64.666,
+  "text": "and the electricity for one laptop."
+ },
+ {
+  "a": 64.686,
+  "b": 68.421,
+  "text": "That frees skilled volunteers to focus on what matters most:"
+ },
+ {
+  "a": 68.441,
+  "b": 69.551,
+  "text": "the message."
+ }
+]

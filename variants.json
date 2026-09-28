@@ -1,0 +1,14 @@
+[
+ {"id":"lang-en","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"Daniel Mensah","role":"Construction volunteer, Ghana","lang":"English"}},
+ {"id":"lang-es","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"Lucía Fernández","role":"Intérprete de lengua de señas, México","lang":"Español"}},
+ {"id":"lang-fr","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"Élodie Martin","role":"Bénévole au siège, Louviers (France)","lang":"Français"}},
+ {"id":"lang-pt","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"João Pereira","role":"Ancião, São Paulo, Brasil","lang":"Português"}},
+ {"id":"lang-de","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"Katrin Vogel","role":"Übersetzerin, Selters, Deutschland","lang":"Deutsch"}},
+ {"id":"lang-ru","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"Андрей Волков","role":"Добровольный строитель","lang":"Русский"}},
+ {"id":"lang-ja","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"佐藤 美咲","role":"翻訳ボランティア・日本","family":"Hiragino Sans","lang":"日本語"}},
+ {"id":"lang-ko","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"박서준","role":"장로, 대한민국 서울","family":"Apple SD Gothic Neo","lang":"한국어"}},
+ {"id":"lang-zh","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"王 丽华","role":"建筑志愿者 · 台湾","family":"PingFang SC","lang":"中文"}},
+ {"id":"lang-ar","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"يوسف حداد","role":"متطوع في أعمال البناء","family":"Geeza Pro","rtl":true,"lang":"العربية"}},
+ {"id":"lang-hi","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"अनन्या शर्मा","role":"अनुवाद स्वयंसेवक, भारत","family":"Kohinoor Devanagari","lang":"हिन्दी"}},
+ {"id":"lang-sw","tpl":"templates/minimal/lower-third.js","group":"One template, many languages","params":{"name":"Baraka Mwangi","role":"Mjitoleaji wa ujenzi, Kenya","lang":"Kiswahili"}}
+]

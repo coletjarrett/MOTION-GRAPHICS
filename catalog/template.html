@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Motion Library</title>
+<style>
+:root{--bg:#0f1318;--bg2:#161c23;--card:#1b222b;--line:#2a3440;--ink:#eef0f3;--muted:#8d99a8;--gold:#d8b36f;--teal:#6fb5b0}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Avenir Next","Helvetica Neue",system-ui,sans-serif}
+a{color:var(--gold)}
+header{padding:72px 6vw 40px;background:radial-gradient(1200px 500px at 70% -10%,rgba(216,179,111,.12),transparent),var(--bg)}
+.kick{letter-spacing:.28em;text-transform:uppercase;font-size:12px;color:var(--gold);font-weight:600}
+h1{font-size:clamp(34px,5vw,64px);line-height:1.05;margin:.3em 0 .25em;font-weight:600;letter-spacing:-.01em}
+.lede{max-width:780px;color:#c9d0d9;font-size:19px}
+.stats{display:flex;gap:44px;flex-wrap:wrap;margin-top:34px}.stat b{display:block;font-size:44px;color:var(--gold);font-weight:700;line-height:1}.stat span{color:var(--muted);font-size:14px}
+nav{position:sticky;top:0;z-index:5;background:rgba(15,19,24,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 6vw;display:flex;gap:8px;flex-wrap:wrap}
+nav button{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer}
+nav button.on,nav button:hover{color:#111;background:var(--gold);border-color:var(--gold)}
+section{padding:36px 6vw 10px}
+section h2{font-size:28px;margin:0;font-weight:600}section p.note{color:var(--muted);margin:.2em 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:#4a5868}
+.thumb{position:relative;aspect-ratio:16/9;background:#000}.thumb img,.thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.thumb video{opacity:0;transition:opacity .25s}.card:hover .thumb video{opacity:1}
+.meta{padding:12px 14px 14px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.meta b{font-weight:600}.meta small{color:var(--muted)}
+.badge{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--teal);color:var(--teal);border-radius:4px;padding:1px 6px;margin-left:6px}
+.explainers .grid{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+#lb{position:fixed;inset:0;background:rgba(5,7,10,.92);display:none;z-index:20;align-items:center;justify-content:center;padding:3vw}
+#lb.on{display:flex}#lb .box{width:min(1300px,100%);background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:1fr;max-height:94vh}
+#lb video{width:100%;display:block;background:#000;max-height:70vh}
+#lb .info{padding:16px 20px;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+#lb .tabs button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer;font:inherit;font-size:14px}
+#lb pre{margin:0;padding:18px 20px;max-height:40vh;overflow:auto;background:#0b0f13;color:#cfd6de;font:13px/1.5 Menlo,monospace;border-top:1px solid var(--line);display:none;white-space:pre-wrap}
+#lb .x{position:fixed;top:18px;right:24px;font-size:30px;color:#fff;cursor:pointer}
+footer{padding:40px 6vw 60px;color:var(--muted);font-size:14px}
+@media (max-width:700px){header{padding:40px 16px 24px}section,nav{padding-left:16px;padding-right:16px}.explainers .grid{grid-template-columns:1fr}}
+</style></head><body>
+<header>
+  <div class="kick">Code-driven motion graphics · proposal demo</div>
+  <h1>One library. Many styles.<br>Every frame written in code.</h1>
+  <p class="lede">Lower thirds, bumpers, timelines, scripture cards, maps and data graphics, rendered on a single laptop from small editable templates. Hover a card to preview it and click to play. Clips with the <span class="badge">alpha</span> badge were delivered as ProRes 4444 with transparency for editors. They are shown here over stand-in footage.</p>
+  <div class="stats" id="stats"></div>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<footer>All names are fictional sample data. Scripture references are shown as references only; the verse text quoted is from Daniel 2 as supplied. No branding of any organisation is used. Music and sound are synthesized in code (original and license-free).</footer>
+<div id="lb"><span class="x" onclick="closeLB()">×</span><div class="box"><video id="lbv" controls playsinline></video><div class="info"><div><div class="kick" id="lbs"></div><div style="font-size:22px;font-weight:600" id="lbt"></div><div style="color:var(--muted);font-size:14px" id="lbm"></div></div><div class="tabs"><button onclick="toggleCode()">View template code</button></div></div><pre id="lbc"></pre></div></div>
+<script>
+/*DATA*/
+const $=s=>document.querySelector(s);
+const S=DATA.stats||{};
+$('#stats').innerHTML=[[DATA.items.length,'clips'],[DATA.packs.filter(p=>!['variants','relief'].includes(p.id)).length,'visual styles'],[12,'languages, one template'],[S.ms_per_frame_median?Math.round(S.ms_per_frame_median)+' ms':'—','median render time per frame']].map(([a,b])=>`<div class="stat"><b>${a}</b><span>${b}</span></div>`).join('');
+const nav=$('#nav'),main=$('#main');
+const types=['All',...new Set(DATA.items.map(i=>i.type).filter(Boolean))];
+nav.innerHTML=types.map((t,i)=>`<button class="${i?'':'on'}" data-t="${t}">${t}</button>`).join('');
+nav.onclick=e=>{const b=e.target.closest('button');if(!b)return;nav.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));render(b.dataset.t)};
+function card(i){return `<div class="card" data-id="${i.id}"><div class="thumb"><img loading="lazy" src="${i.jpg}"><video muted loop playsinline preload="none" data-src="${i.mp4}"></video></div><div class="meta"><div><b>${i.title||i.id}</b>${i.alpha?'<span class="badge">alpha</span>':''}<br><small>${i.type||''}</small></div><small>${i.dur? i.dur+' s':''}</small></div></div>`}
+function render(type){let h='';
+ if(DATA.explainers.length&&type==='All')h+=`<section class="explainers"><div class="kick">Start here</div><h2>Explainers</h2><p class="note">Short narrated videos about the technique, made with the same toolkit.</p><div class="grid">${DATA.explainers.map(e=>`<div class="card" data-exp="${e.mp4}"><div class="thumb"><img src="${e.jpg}"></div><div class="meta"><b>${e.id.replace(/^\d+[_ -]*/,'').replace(/[-_]/g,' ')}</b></div></div>`).join('')}</div></section>`;
+ for(const p of DATA.packs){const its=DATA.items.filter(i=>i.pack===p.id&&(type==='All'||i.type===type));if(!its.length)continue;
+  h+=`<section id="p-${p.id}"><div class="kick">${p.id==='variants'?'Data-driven':'Style'}</div><h2>${p.name}</h2><p class="note">${p.note}</p><div class="grid">${its.map(card).join('')}</div></section>`}
+ main.innerHTML=h;
+ main.querySelectorAll('.card').forEach(c=>{const v=c.querySelector('video');if(v){c.onmouseenter=()=>{if(!v.src)v.src=v.dataset.src;v.play().catch(()=>{})};c.onmouseleave=()=>v.pause()}
+  c.onclick=()=>c.dataset.exp?openLB({mp4:c.dataset.exp,title:'Explainer',style:'',type:'',src:''}):openLB(DATA.items.find(i=>i.id===c.dataset.id))});}
+function openLB(i){$('#lb').classList.add('on');const v=$('#lbv');v.src=i.mp4;v.play().catch(()=>{});$('#lbs').textContent=i.style||'';$('#lbt').textContent=i.title||i.id;
+ $('#lbm').textContent=[i.type,i.dur?i.dur+' s':'',i.alpha?'ProRes 4444 with alpha: '+i.mov.split('/').pop():'',i.params?'params: '+JSON.stringify(i.params):''].filter(Boolean).join(' · ');
+ $('#lbc').textContent=i.src||'';$('#lbc').style.display='none'}
+function closeLB(){$('#lb').classList.remove('on');$('#lbv').pause()}
+function toggleCode(){const c=$('#lbc');c.style.display=c.style.display==='block'?'none':'block'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB()});$('#lb').onclick=e=>{if(e.target.id==='lb')closeLB()};
+render('All');
+</script></body></html>

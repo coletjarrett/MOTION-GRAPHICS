@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:GB;src:url(/engine/fonts/garamond.woff2)}@font-face{font-family:GB;font-weight:700;src:url(/engine/fonts/garamond700.woff2)}
+@font-face{font-family:GB;font-style:italic;src:url(/engine/fonts/garamond-italic.woff2)}@font-face{font-family:GB;font-style:italic;font-weight:500;src:url(/engine/fonts/garamond-italic500.woff2)}
+@font-face{font-family:Inter;src:url(/engine/fonts/inter.woff2)}@font-face{font-family:Inter;font-weight:500;src:url(/engine/fonts/inter500.woff2)}
+@font-face{font-family:Mono;src:url(/engine/fonts/mono.woff2)}@font-face{font-family:Uncial;src:url(/engine/fonts/uncial.woff2)}
+html,body{margin:0;background:transparent;overflow:hidden}canvas{display:block}
+</style></head><body><canvas id="c"></canvas>
+<script src="/engine/kit.js"></script>
+<script>
+// load shared libs then the template named in ?t=
+(async()=>{const q=new URLSearchParams(location.search);const libs=(q.get('libs')||'').split(',').filter(Boolean);
+for(const s of [...libs,q.get('t')]){await new Promise((res,rej)=>{const e=document.createElement('script');e.src='/'+s+'?v='+Date.now();e.onload=res;e.onerror=()=>rej(Error('load '+s));document.head.appendChild(e);});}
+window.__loaded=true;})();
+</script></body></html>

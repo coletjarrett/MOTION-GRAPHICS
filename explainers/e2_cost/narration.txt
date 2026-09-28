@@ -1,0 +1,24 @@
+What does production like this actually cost?
+[pause 0.3]
+Take the film on Daniel chapter two:
+three minutes, fully animated, narrated, and scored with sound design.
+The person directing it sent fewer than ten short messages.
+The AI assistant planned the scenes, wrote every line of animation code,
+built the sound, and checked the frames for defects.
+The final render ran on a laptop, in the background, in about twenty minutes.
+No render farm. No stock footage. No licensed plugins.
+
+This graphics library went further.
+Dozens of clips, in more than a dozen visual styles,
+were designed, rendered, and reviewed overnight.
+Several AI workers built style packs in parallel,
+while a second model critiqued the results.
+Each lower third renders in well under a minute.
+
+Traditionally, a package like this could take a motion designer several weeks.
+Here, the human role shifts from building to directing:
+choosing, approving, and refining.
+The running costs are a few AI subscriptions,
+and the electricity for one laptop.
+That frees skilled volunteers to focus on what matters most:
+the message.

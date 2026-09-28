@@ -1,0 +1,12 @@
+# large editor masters (ProRes 4444 with alpha) — too big for GitHub; render locally with engine/build.py
+*.mov
+qa/
+drafts/
+share/
+audio/clips/
+explainers/*/mix.wav
+explainers/*/narration_bed.wav
+*.tmp.mp4
+*.silent.mp4
+.DS_Store
+node_modules/

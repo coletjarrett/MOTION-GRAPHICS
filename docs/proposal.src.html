@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Code-Driven Motion Graphics — Proposal</title>
+<style>
+@page{size:Letter;margin:0.7in 0.75in}
+:root{--ink:#1f2328;--muted:#5e6670;--gold:#a7824a;--line:#e3ddd3}
+body{font:11pt/1.55 "Avenir Next","Helvetica Neue",sans-serif;color:var(--ink);margin:0}
+h1{font:600 30pt/1.1 "Avenir Next";margin:0 0 6pt;letter-spacing:-.01em}
+h2{font:600 15pt/1.2 "Avenir Next";margin:22pt 0 6pt;padding-top:8pt;border-top:1px solid var(--line)}
+h3{font:600 11.5pt "Avenir Next";margin:12pt 0 3pt}
+.kick{font:600 8.5pt "Avenir Next";letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.lede{font-size:13pt;color:#3a4048;max-width:6.4in}
+.cover{padding:1.1in 0 .3in;border-bottom:3px solid var(--gold);margin-bottom:14pt}
+.byline{color:var(--muted);margin-top:14pt}
+.stats{display:flex;gap:22pt;margin:16pt 0 4pt;flex-wrap:wrap}.stats div b{display:block;font:700 24pt "Avenir Next";color:var(--gold);line-height:1}.stats div span{font-size:9pt;color:var(--muted)}
+table{border-collapse:collapse;width:100%;margin:6pt 0 4pt;font-size:10pt}th,td{border-bottom:1px solid var(--line);padding:5pt 6pt;text-align:left;vertical-align:top}th{font-weight:600;color:var(--muted);font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase}
+.note{font-size:9pt;color:var(--muted)}
+.box{background:#f7f3ec;border-left:3px solid var(--gold);padding:8pt 12pt;margin:10pt 0}
+ul{margin:4pt 0 4pt 16pt;padding:0}li{margin:2pt 0}
+.flow{display:flex;gap:6pt;align-items:center;flex-wrap:wrap;margin:8pt 0}.flow span{border:1px solid var(--line);border-radius:6pt;padding:4pt 8pt;font-size:9.5pt;background:#fbf9f5}.flow i{color:var(--gold);font-style:normal}
+.pb{break-before:page}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:5pt;margin:8pt 0}.thumbs img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3pt;border:1px solid var(--line)}
+</style></head><body>
+<div class="cover">
+  <div class="kick">Proposal · for discussion</div>
+  <h1>Code-Driven Motion Graphics</h1>
+  <p class="lede">A practical way to produce lower thirds, bumpers, timelines, scripture cards, maps and short animated films. Every frame is written in code, AI assistants do the building, and people keep every decision.</p>
+  <div class="stats">
+    <div><b>{{clips}}</b><span>finished clips</span></div>
+    <div><b>{{styles}}</b><span>visual styles</span></div>
+    <div><b>12</b><span>languages from one template</span></div>
+    <div><b>2</b><span>narrated explainers</span></div>
+    <div><b>1</b><span>laptop · overnight</span></div>
+  </div>
+  <p class="byline">Prepared by Cole Jarrett · {{date}}</p>
+</div>
+
+<h2>1. Summary</h2>
+<p>Each graphic in this library is a small program. The program answers one question: what does the picture look like at time <i>t</i>? Because every frame depends only on time and on the text supplied, frames can be rendered on any computer, in any order and in parallel, and they come out identical every time. An AI assistant writes and revises the programs from a short brief. A second AI model critiques the rendered frames. A person approves the look, the wording and the final cut.</p>
+<div class="box"><b>Why this matters for a translation-heavy organisation:</b> the text is data. A spreadsheet of names, dates or verse references becomes finished clips in every language, and scripts like Arabic mirror automatically. Changing one name means re-rendering one clip in seconds, with no project files to reopen.</div>
+<div class="thumbs">{{thumbs}}</div>
+
+<h2>2. What was built for this meeting</h2>
+<p>In a single overnight session on one Apple M1 laptop (8 GB):</p>
+<ul>
+  <li><b>{{clips}} clips in {{styles}} styles:</b> {{stylelist}}.</li>
+  <li><b>12-language demonstration:</b> the same lower third rendered from a table of names in English, Spanish, French, Portuguese, German, Russian, Japanese, Korean, Chinese, Arabic (right-to-left), Hindi and Swahili.</li>
+  <li><b>Two narrated explainers and a style reel:</b> “How it works” and “The cost picture” were built with the same toolkit and narrated by an on-device speech model.</li>
+  <li><b>Case study:</b> a 3-minute animated film of Daniel 2:31–45 in a gilded-relief style, fully narrated with sound design.</li>
+  <li><b>Original music and sound:</b> every bumper carries a short, calm score synthesized in code, so there is nothing to license.</li>
+</ul>
+
+<h2>3. How it works</h2>
+<div class="flow"><span>Brief<br><small>words · style · length</small></span><i>→</i><span>AI writes template</span><i>→</i><span>Test stills</span><i>→</i><span>Second-model critique</span><i>→</i><span><b>Person approves</b></span><i>→</i><span>Batch render</span><i>→</i><span>Deliver</span></div>
+<table>
+<tr><th>Piece</th><th>What it is</th><th>Why it matters</th></tr>
+<tr><td>Template</td><td>~100–300 lines of JavaScript drawing on a canvas, with all text and colours in parameters</td><td>Readable, versionable and reviewable; one template → many clips</td></tr>
+<tr><td>Renderer</td><td>A standard browser (Chrome) running headless, driven frame by frame</td><td>No special software; runs on any Mac or PC</td></tr>
+<tr><td>Encoder</td><td>ffmpeg (open source)</td><td>ProRes 4444 with alpha for editors, and H.264 for review</td></tr>
+<tr><td>Narration</td><td>Kokoro, an open speech model running offline on the laptop</td><td>Scratch or temp narration with no data leaving the machine</td></tr>
+<tr><td>Music</td><td>Synthesized in code: piano, pads, bells, plucks</td><td>Original and license-free; calm by design</td></tr>
+<tr><td>AI</td><td>Claude (building and fixing), Gemini (independent critique and extra packs)</td><td>Two models check each other; a person decides</td></tr>
+</table>
+<div class="box"><b>No generated imagery.</b> AI is used only to write drawing code. Every shape is plain geometry and every word is text we supply, so there is no synthetic photography, no likeness of real people, and nothing the model “imagined”. Each clip can be inspected line by line.</div>
+
+<h2 class="pb">4. Measured time and cost</h2>
+<table>
+<tr><th>Item</th><th>Measured</th></tr>
+<tr><td>Daniel 2 film: human input</td><td>8 short chat messages across one afternoon (direction, translation choice, verse range, text, voice choice)</td></tr>
+<tr><td>Daniel 2 film: AI work</td><td>Planned 6 scenes, wrote 1,427 lines of scene code and 100+ sound cues, and checked frames for defects</td></tr>
+<tr><td>Daniel 2 film: final render</td><td>5,640 frames at 1080p, 22 minutes on the laptop in the background</td></tr>
+<tr><td>This library: render compute</td><td>{{render_mins}} minutes total for {{frames}} frames (median {{ms}} ms per frame, 2–3 workers)</td></tr>
+<tr><td>One lower third</td><td>≈ {{l3}} s to render (210 frames), including the ProRes and H.264 encodes</td></tr>
+<tr><td>Hardware</td><td>One Apple M1 laptop, 8 GB RAM. No render farm and no GPU server.</td></tr>
+<tr><td>Software licences</td><td>None required for the pipeline: Chrome, ffmpeg and the speech model are free</td></tr>
+<tr><td>AI cost</td><td>Covered by standard AI subscriptions (Claude and Gemini seats); no per-clip fees</td></tr>
+</table>
+<p class="note">Comparisons with traditional workflows in the explainer are illustrative estimates. A pilot (section 7) would measure them properly against the team’s real jobs.</p>
+
+<h2>5. Where it fits and where it does not</h2>
+<h3>Strong fits</h3>
+<ul><li>Recurring graphics: lower thirds, location tags, scripture callouts, agendas, countdowns, program bumpers</li>
+<li>Anything that multiplies by language: re-render the same design from a translated table</li>
+<li>Explanatory graphics: timelines, maps with routes, simple diagrams and data</li>
+<li>Consistency: a design system encoded once and applied the same way everywhere</li></ul>
+<h3>Honest limitations</h3>
+<ul><li>This is illustration and typography, not photorealism or character animation.</li>
+<li>Production would use the organisation’s own fonts and design standards. The demo uses system fonts.</li>
+<li>AI-written code still needs an experienced eye. The critique loop catches a lot, but not everything.</li>
+<li>Synthesized voice and music suit scratch tracks and internal pieces. Published work would keep human narration and approved music.</li>
+<li>Quality is set by review. The speed only helps if approval stays with people.</li></ul>
+
+<h2>6. How it would slot into existing work</h2>
+<ul><li><b>Editors</b> receive ProRes 4444 files with transparency, which drop straight into Premiere, Resolve or Final Cut, as well as H.264 previews.</li>
+<li><b>Templates</b> live in a shared repository with version history, and a change to a template is reviewed like a document edit.</li>
+<li><b>Translation teams</b> supply text tables. Clips come back per language, with fonts chosen per script.</li>
+<li><b>Rendering</b> runs on a spare Mac or PC, or on several machines at once, since frames are independent.</li></ul>
+
+<h2>7. Suggested next step: a four-week pilot</h2>
+<table>
+<tr><th>Week</th><th>Goal</th></tr>
+<tr><td>1</td><td>Choose three recurring graphics currently made by hand. Encode the team’s fonts, colours and spacing as a template “design system”.</td></tr>
+<tr><td>2</td><td>Build the three templates with AI assistance, and review with the design team.</td></tr>
+<tr><td>3</td><td>Render them in 5–10 languages from real translated tables, and hand them to editors.</td></tr>
+<tr><td>4</td><td>Compare hours and revisions against the current process, then decide whether to continue.</td></tr>
+</table>
+
+<h2>Appendix: files in the demo folder</h2>
+<table>
+<tr><td><b>Library.html</b></td><td>The catalog: every clip, with hover preview, playback and the template code</td></tr>
+<tr><td>explainers/</td><td>The three narrated explainers</td></tr>
+<tr><td>out/&lt;style&gt;/</td><td>Rendered clips: .mp4 previews, .mov ProRes with alpha, and .jpg posters</td></tr>
+<tr><td>templates/</td><td>The source of every graphic, one small file each</td></tr>
+<tr><td>engine/</td><td>The runtime (kit.js), the renderer, batch build, music and scoring</td></tr>
+<tr><td>TEMPLATES.md</td><td>The authoring guide and house rules given to every AI worker</td></tr>
+</table>
+<p class="note">All names in the demo are fictional. Scripture appears as references, apart from the Daniel 2 text supplied for the case study. No logos or branding of any organisation are used.</p>
+</body></html>
