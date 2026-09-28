@@ -6,6 +6,7 @@ time and editable text, rendered by headless Chrome and encoded with ffmpeg.
 
 - **Browse:** open `Library.html` (or the GitHub Pages site for this repo)
 - **Explainers:** `explainers/01 How it works.mp4`, `02 The cost picture.mp4`, `03 Style reel.mp4`
+- **Case study:** `explainers/04 Daniel 2 film (verses 31–45).mp4`, the full 3-minute narrated relief film (web encode; the 1080p master lives outside the repo)
 - **Proposal:** `docs/Proposal - Code-Driven Motion Graphics.pdf`
 - **Write a template:** `TEMPLATES.md` · runtime `engine/kit.js`
 - **Render:** `python3 engine/build.py [filter]` (needs Node + puppeteer-core, Google Chrome, ffmpeg).
