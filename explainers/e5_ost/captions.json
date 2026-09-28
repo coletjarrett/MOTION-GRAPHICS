@@ -1,0 +1,117 @@
+[
+ {
+  "a": 1.2,
+  "b": 5.567,
+  "text": "On-screen text appears in almost every video, and in every language."
+ },
+ {
+  "a": 5.587,
+  "b": 9.26,
+  "text": "Today, it passes through many disconnected tools and files."
+ },
+ {
+  "a": 9.28,
+  "b": 14.438,
+  "text": "Editors often place proxies, or pre-rendered movie files, instead of live text."
+ },
+ {
+  "a": 14.458,
+  "b": 18.92,
+  "text": "Right-to-left versions are rebuilt in a separate After Effects project."
+ },
+ {
+  "a": 18.94,
+  "b": 25.523,
+  "text": "Translation materials are re-created by hand in MEPS composition, and then again in PowerPoint."
+ },
+ {
+  "a": 25.543,
+  "b": 29.883,
+  "text": "To hold it together, graphics produces a whole set of side documents:"
+ },
+ {
+  "a": 29.903,
+  "b": 34.179,
+  "text": "style guides, MEPS details, MEPS references, and art references."
+ },
+ {
+  "a": 34.199,
+  "b": 37.674,
+  "text": "They describe placement, fonts, and translation boundaries."
+ },
+ {
+  "a": 37.694,
+  "b": 42.905,
+  "text": "But the editor rarely sees them, and it's hard to find the right one for a given project."
+ },
+ {
+  "a": 42.925,
+  "b": 46.885,
+  "text": "So the same words are re-created by hand, three or four times."
+ },
+ {
+  "a": 46.905,
+  "b": 51.268,
+  "text": "Each copy can drift from the others, and no single file is the master."
+ },
+ {
+  "a": 51.288,
+  "b": 55.899,
+  "text": "When something doesn't match, the project waits while people track down the right file."
+ },
+ {
+  "a": 55.919,
+  "b": 61.165,
+  "text": "And new staff must learn a web of in-house tools and conventions before they can help."
+ },
+ {
+  "a": 61.185,
+  "b": 64.447,
+  "text": "The code-driven workflow starts from the text itself."
+ },
+ {
+  "a": 64.467,
+  "b": 69.708,
+  "text": "Every string lives in one table: the words, the font, the position, and the timing."
+ },
+ {
+  "a": 69.728,
+  "b": 73.869,
+  "text": "Each graphic is a template that reads that table, for every language."
+ },
+ {
+  "a": 73.889,
+  "b": 79.695,
+  "text": "The template is the style guide: placement and fonts are written into it, not described beside it."
+ },
+ {
+  "a": 79.715,
+  "b": 83.743,
+  "text": "Right-to-left layouts mirror automatically, from the same template."
+ },
+ {
+  "a": 83.763,
+  "b": 87.66,
+  "text": "Layouts are measured to fit each translation, so movement can stay."
+ },
+ {
+  "a": 87.68,
+  "b": 92.743,
+  "text": "The same table could generate the translation materials, instead of re-typing them."
+ },
+ {
+  "a": 92.763,
+  "b": 98.792,
+  "text": "And editors still receive ordinary ProRes files with transparency, ready for their timeline."
+ },
+ {
+  "a": 98.812,
+  "b": 101.701,
+  "text": "One table, one template, every language."
+ },
+ {
+  "a": 101.721,
+  "b": 104.889,
+  "text": "Fewer copies, fewer documents, and fewer delays."
+ }
+]

@@ -1,0 +1,27 @@
+On-screen text appears in almost every video, and in every language.
+Today, it passes through many disconnected tools and files.
+Editors often place proxies, or pre-rendered movie files, instead of live text.
+Right-to-left versions are rebuilt in a separate After Effects project.
+Translation materials are re-created by hand in MEPS composition, and then again in PowerPoint.
+[pause 0.4]
+To hold it together, graphics produces a whole set of side documents:
+style guides, MEPS details, MEPS references, and art references.
+They describe placement, fonts, and translation boundaries.
+But the editor rarely sees them, and it's hard to find the right one for a given project.
+[pause 0.4]
+So the same words are re-created by hand, three or four times.
+Each copy can drift from the others, and no single file is the master.
+When something doesn't match, the project waits while people track down the right file.
+And new staff must learn a web of in-house tools and conventions before they can help.
+[pause 0.4]
+The code-driven workflow starts from the text itself.
+Every string lives in one table: the words, the font, the position, and the timing.
+Each graphic is a template that reads that table, for every language.
+The template is the style guide: placement and fonts are written into it, not described beside it.
+Right-to-left layouts mirror automatically, from the same template.
+Layouts are measured to fit each translation, so movement can stay.
+The same table could generate the translation materials, instead of re-typing them.
+And editors still receive ordinary ProRes files with transparency, ready for their timeline.
+[pause 0.4]
+One table, one template, every language.
+Fewer copies, fewer documents, and fewer delays.
