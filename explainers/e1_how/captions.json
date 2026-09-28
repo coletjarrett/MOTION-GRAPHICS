@@ -91,57 +91,47 @@
  },
  {
   "a": 60.588,
-  "b": 65.644,
+  "b": 65.664,
   "text": "ProRes with transparency for overlays, and H.264 for review."
  },
  {
-  "a": 65.664,
-  "b": 68.811,
-  "text": "Narration can be generated on the same computer,"
- },
- {
-  "a": 68.831,
-  "b": 71.976,
-  "text": "with a speech model that runs completely offline."
- },
- {
-  "a": 72.726,
-  "b": 76.821,
+  "a": 66.414,
+  "b": 70.509,
   "text": "Because the text is data, one template becomes hundreds of clips."
  },
  {
-  "a": 76.841,
-  "b": 81.125,
+  "a": 70.529,
+  "b": 74.813,
   "text": "Change a name, a date, or a language, and render again in seconds."
  },
  {
-  "a": 81.145,
-  "b": 84.588,
+  "a": 74.833,
+  "b": 78.276,
   "text": "Right-to-left scripts, like Arabic, mirror automatically."
  },
  {
-  "a": 85.338,
-  "b": 90.554,
+  "a": 79.026,
+  "b": 84.242,
   "text": "And because the templates are code, they can be versioned, reviewed, and shared between teams."
  },
  {
-  "a": 90.574,
-  "b": 93.663,
+  "a": 84.262,
+  "b": 87.351,
   "text": "The same method scales from a simple name title"
  },
  {
-  "a": 93.683,
-  "b": 96.171,
+  "a": 87.371,
+  "b": 89.859,
   "text": "to a fully narrated, animated film."
  },
  {
-  "a": 96.191,
-  "b": 99.145,
+  "a": 89.879,
+  "b": 92.833,
   "text": "Modest in cost. Consistent in quality."
  },
  {
-  "a": 99.165,
-  "b": 101.545,
+  "a": 92.853,
+  "b": 95.233,
   "text": "And ready to serve in many languages."
  }
 ]

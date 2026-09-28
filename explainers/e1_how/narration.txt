@@ -20,8 +20,6 @@ the look, the wording, and the final cut.
 Rendering happens in a standard web browser, running invisibly, one frame at a time.
 The frames are encoded for editors:
 ProRes with transparency for overlays, and H.264 for review.
-Narration can be generated on the same computer,
-with a speech model that runs completely offline.
 
 Because the text is data, one template becomes hundreds of clips.
 Change a name, a date, or a language, and render again in seconds.
