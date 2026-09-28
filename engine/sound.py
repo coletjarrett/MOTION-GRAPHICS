@@ -15,8 +15,9 @@ for mp4 in sorted(glob.glob('out/*/*.mp4')):
     has_audio = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'a', '-show_entries', 'stream=index', '-of', 'csv=p=0', mp4], capture_output=True, text=True).stdout.strip()
     if has_audio and not os.environ.get('FORCE'): continue
     d = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', mp4], capture_output=True, text=True).stdout)
-    mood = MOOD.get(pack, 'warm'); wav = f'audio/clips/{vid}.wav'
+    mood = 'warm';   # after listening tests only 'warm' was good enough to ship (qa/music_critique3.md)
+    wav = f'audio/clips/{vid}.wav'
     sf.write(wav, music.compose(d, mood, zlib.crc32(vid.encode()) % 1000, sting=d <= 12), music.SR, subtype='PCM_16')
     tmp = mp4[:-4] + '.tmp.mp4'
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', mp4, '-i', wav, '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'copy', '-af', 'loudnorm=I=-20:TP=-2:LRA=11', '-ar', '48000', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', tmp], check=True)
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', mp4, '-i', wav, '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'copy', '-af', 'loudnorm=I=-27:TP=-4:LRA=11', '-ar', '48000', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', tmp], check=True)
     os.replace(tmp, mp4); print('scored', vid, mood, round(d, 1))

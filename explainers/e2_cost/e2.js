@@ -22,8 +22,12 @@ K.template({ id: 'explainer-cost', title: 'The cost picture', style: 'Explainer'
       X.kicker(c, 'Case study · Daniel 2:31–45', 160, 150, K.P(t, T(1), T(1) + 1));
       // film panel with slow crossfading stills
       const fx = 160, fy = 190, fw = 900, fh = 506; X.panel(c, fx - 10, fy - 10, fw + 20, fh + 20, { r: 16 });
-      const n = p.daniel.length, per = 3.2, u = (t - T(1)) / per, i0 = Math.max(0, Math.floor(u)) % n, i1 = (i0 + 1) % n, fr = K.ease.io(K.clamp((u - Math.floor(u) - .75) / .25));
-      for (const [im, al, j] of [[p.daniel[i0], 1, 0], [p.daniel[i1], fr, 1]]) { if (!im || al <= 0) continue; c.save(); c.globalAlpha = a * al; K.rr(c, fx, fy, fw, fh, 8); c.clip(); const z = 1.04 + .04 * ((u + j) % 1); c.drawImage(im, fx - (z - 1) * fw / 2, fy - (z - 1) * fh / 2, fw * z, fh * z); c.restore(); }
+      // slow crossfading push-ins: each still's zoom runs on its OWN clock (from the moment it starts fading in to
+      // the moment it has fully faded out), so nothing ever snaps back when the next still takes over
+      const n = p.daniel.length, per = 3.2, xf = .3, u = Math.max(0, (t - T(1)) / per), k0 = Math.floor(u), fr = K.ease.sine(K.clamp((u - k0 - (1 - xf)) / xf));
+      const drawStill = (k, al) => { const im = p.daniel[k % n]; if (!im || al <= 0) return; const life = K.clamp((u - k + xf) / (1 + xf)), z = 1.03 + .05 * life;
+        c.save(); c.globalAlpha = a * al; K.rr(c, fx, fy, fw, fh, 8); c.clip(); c.drawImage(im, fx - (z - 1) * fw / 2, fy - (z - 1) * fh / 2, fw * z, fh * z); c.restore(); };
+      drawStill(k0, 1); drawStill(k0 + 1, fr);
       c.globalAlpha = a; const facts = [['3:08', 'running time'], ['5,640', 'frames'], ['1', 'on-device voice'], ['0', 'stock assets']];
       facts.forEach(([n1, l], i) => { const k = K.E(t, T(2) + i * .45, T(2) + .8 + i * .45); c.globalAlpha = a * k; const x = fx + i * 250; X.label(c, n1, x, 790, { size: 54, w: 700, color: C.gold }); X.label(c, l, x, 830, { size: 22, color: C.muted }); });
       // right column: the story of the session

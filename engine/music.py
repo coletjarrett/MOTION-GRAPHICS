@@ -43,7 +43,7 @@ def pad(f, dur, vel=.25, rng=None, bright=900, att=1.2):
     n = int(dur * SR); t = np.arange(n) / SR; x = np.zeros(n)
     for dt in (-.07, 0, .06):                                     # three detuned soft saws
         ph = 2 * math.pi * f * (1 + dt / 100) * t + rng.uniform(0, 6.28)
-        x += sum(np.sin(k * ph) / k for k in range(1, 9))
+        x += sum(np.sin(k * ph) / (k * k) for k in range(1, 7))
     # a slowly breathing filter: crossfade a darker and a brighter version with a gentle LFO
     lfo = .5 + .5 * np.sin(2 * math.pi * .11 * t + rng.uniform(0, 6.28))
     x = (lp(x, bright * .6, 2) * (1 - lfo) + lp(x, bright * 1.5, 2) * lfo) * (1 + .06 * np.sin(2 * math.pi * .23 * t))
@@ -70,41 +70,37 @@ PROG = {'warm': [[0, 4, 7, 11], [9, 12, 16, 19], [5, 9, 12, 16], [7, 11, 14, 17]
         'stately': [[0, 4, 7], [5, 9, 12], [9, 12, 16], [7, 11, 14]]}
 
 def compose(dur, mood, seed=1, sting=False):
-    rng = np.random.default_rng(seed); n = int((dur + 3) * SR); mix = np.zeros((n, 2))
-    key = KEYS[mood]; prog = PROG[mood]; bar = 2.4 if sting else 3.2
+    """Sparse, gentle arrangement: a soft sustained pad, a quiet sub under it, and a few melody notes.
+    No pulsing bass, no busy ostinato. Stings resolve on a final chord that has room to ring out."""
+    rng = np.random.default_rng(seed); n = int((dur + 4) * SR); mix = np.zeros((n, 2))
+    key = KEYS[mood]; prog = PROG[mood]
+    bar = max(1.8, min(3.0, (dur - 3.4) / 2)) if sting else 4.0
     def put(sig, t0, pan=0, db=0):
         i = max(0, int(t0 * SR)); j = min(n, i + len(sig)); g = 10 ** (db / 20)
         if i >= n or j <= i: return
         mix[i:j, 0] += sig[: j - i] * g * math.cos((pan + 1) * math.pi / 4); mix[i:j, 1] += sig[: j - i] * g * math.sin((pan + 1) * math.pi / 4)
-    if sting: bar = max(1.6, min(2.4, (dur - 3.4) / 2))   # final chord lands ≥3.4 s before the end so it can ring out
-    nb = int(math.ceil(dur / bar)) if not sting else max(2, int((dur - 3.4) / bar) + 1)
+    lead = {'warm': piano, 'calm': piano, 'stately': piano, 'bright': pluck, 'paper': marimba, 'night': bell}[mood]
+    nb = max(2, int((dur - 3.4) / bar) + 1) if sting else int(math.ceil(dur / bar))
     for b in range(nb):
-        ch = prog[b % len(prog)] if not sting else prog[[0, 3, 2, 0][b % 4]] if b < nb - 1 else prog[0]
-        t0 = b * bar; last = b == nb - 1; L = bar * (2.2 if last and sting else 1.15)
-        for v in ch: put((strings if mood in ('calm', 'stately') else pad)(midi(key + v - 12), L + .6, .16, rng), t0, rng.uniform(-.5, .5), -4)
-        put(bass(midi(key + ch[0] - 24), L, .5, rng), t0, 0, -6)
-        # melody / figure
-        if mood in ('warm', 'calm', 'stately'):
-            for k in range(4 if not sting else 3):
-                note = key + ch[(k * 2 + b) % len(ch)] + 12 * (k % 2 == 1)
-                put(piano(midi(note), 3.5, .5 + .2 * (k == 0), rng), t0 + k * bar / 4 + (.012 * rng.standard_normal()), (k - 1.5) * .25, -3)
-        elif mood == 'bright':
-            for k in range(6):
-                put(pluck(midi(key + ch[k % len(ch)] + 12), 1.6, .5, rng, .4), t0 + k * bar / 6, (k % 3 - 1) * .4, -4)
-        elif mood == 'paper':
-            for k in range(8):
-                if k in (3, 7) and rng.random() < .5: continue
-                put(marimba(midi(key + ch[(k * 2) % len(ch)] + 12 * (k % 4 == 2)), 1.2, .5, rng), t0 + k * bar / 8, (k % 2 - .5) * .6, -4)
-        elif mood == 'night':
-            for k in range(3):
-                put(bell(midi(key + ch[(k + b) % len(ch)] + 24), 4, .3, rng), t0 + k * bar / 3 + .3, (k - 1) * .5, -9)
-        if sting and last:   # a resolving flourish on the final chord
-            for k, v in enumerate(ch + [ch[0] + 12]): put((bell if mood in ('night', 'bright') else piano)(midi(key + v + 12), 4.5, .35, rng), t0 + k * .09, (k - 2) * .3, -6)
-    mix = lp(mix, 9000)
-    out = reverb(mix, 3.0 if mood in ('night', 'calm') else 2.4, .22)
+        last = sting and b == nb - 1
+        ch = prog[0] if last else prog[b % len(prog)]
+        t0 = b * bar; L = bar * (3.0 if last else 1.35)
+        for v in ch[:3]: put((strings if mood == 'stately' else pad)(midi(key + v - 12), L + .8, .10, rng, **({} if mood == 'stately' else {'att': 1.6})), t0, rng.uniform(-.4, .4), -6)
+        sub = np.sin(2 * math.pi * midi(key + ch[0] - 24) * np.arange(int(L * SR)) / SR) * env(int(L * SR), .8, 99, 1, min(1.2, L * .4))
+        put(sub * .22, t0, 0, -10)
+        if last:   # a soft rolled resolution
+            for k, v in enumerate(ch + [ch[0] + 12]): put(lead(midi(key + v + 12), 5.0, .26, rng), t0 + k * .12, (k - 2) * .25, -8)
+            continue
+        steps = 2 if sting else 3
+        for k in range(steps):
+            if not sting and k and rng.random() < .35: continue
+            v = ch[(k * 2 + b) % len(ch)] + (12 if k % 2 == 0 else 0)
+            put(lead(midi(key + v + 12), 4.0, .30 + .06 * (k == 0), rng), t0 + k * bar / steps + .02 * rng.standard_normal() + .05, (k - 1) * .3, -8)
+    mix = lp(mix, 6500)
+    out = reverb(mix, 3.2 if mood in ('night', 'calm') else 2.6, .26)
     out = out[: int(dur * SR)]
-    fo = int((2.4 if sting else 3.0) * SR); out[-fo:] *= (.5 + .5 * np.cos(np.linspace(0, math.pi, fo)))[:, None]
-    fi = int(.03 * SR); out[:fi] *= np.linspace(0, 1, fi)[:, None]
+    fo = int((2.4 if sting else 3.5) * SR); out[-fo:] *= (.5 + .5 * np.cos(np.linspace(0, math.pi, fo)))[:, None]
+    fi = int(.05 * SR); out[:fi] *= np.linspace(0, 1, fi)[:, None]
     return out / (np.abs(out).max() + 1e-9) * 10 ** (-3 / 20)
 
 if __name__ == '__main__':
